@@ -21,19 +21,26 @@ export default {
     this.editor = monaco.editor.create(dom, {
       value: "// type your code \n",
       language: this.LANGUAGE,
+      lineNumbers: "off",
+      fontSize: "12",
       minimap: {
         enabled: false,
       },
     });
     monaco.languages.registerCompletionItemProvider(this.LANGUAGE, {
       provideCompletionItems() {
+        // provideCompletionItems(model, position, token, context) {
+        //   console.log("model", model.fileName);
+        //   console.log("position", position);
+        //   console.log("token", token);
+        //   console.log("context", context);
         return {
           suggestions: [
             {
-              label: "public", // 显示的提示内容
-              kind: monaco.languages.CompletionItemKind["Function"], // 用来显示提示内容后的不同的图标
-              insertText: "public", // 选择后粘贴到编辑器中的文字
-              detail: "公共方法关键字", // 提示内容后的说明
+              label: "public",
+              kind: monaco.languages.CompletionItemKind["Function"],
+              insertText: "public",
+              detail: "公共方法关键字",
             },
             {
               label: "private",
@@ -69,6 +76,7 @@ export default {
   width: 95%;
   height: 100%;
   min-height: 800px;
+  height: 20px;
   border: 1px solid #ebeef5;
   text-align: left;
 }
